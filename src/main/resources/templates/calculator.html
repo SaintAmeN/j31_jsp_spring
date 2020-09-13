@@ -9,12 +9,21 @@
 <h1>Hello Calculator!</h1>
 
 <div class="container">
-    <form th:action="@{/calculator}" action="post">
+    <form th:action="@{/calculator}" method="post">
         Size X: <input type="number" step="1" min="1" name="sizeX">
         Size Y: <input type="number" step="1" min="1" name="sizeY">
 
         <input type="submit">
     </form>
+
+    <hr>
+    <table th:if="${rowNumber!= null && colNumber != null}">
+        <tr th:each="row : ${#numbers.sequence(1, rowNumber)}">
+            <td th:each="col : ${#numbers.sequence(1, colNumber)}">
+                <span th:text="${row * col}"></span>
+            </td>
+        </tr>
+    </table>
 </div>
 <div th:replace="pagefragments :: footer_scripts"/>
 </body>
