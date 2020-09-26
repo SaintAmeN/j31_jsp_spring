@@ -5,11 +5,10 @@ import com.sda.javagda31.students.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -42,4 +41,24 @@ public class StudentController {
         return "student_list";
     }
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam(name = "studentId") Long studentId) {
+        studentService.delete(studentId);
+        return "redirect:/student/list";
+    }
+
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable(name = "id") Long studentId, Model model) {
+        Optional<Student> studentOptional = studentService.findStudent(studentId);
+        if(studentOptional.isPresent()){
+            Student foundStudent = studentOptional.get();
+            model.addAttribute("student", foundStudent);
+
+            // jeśli studenta udało się znaleźć, to wyświetlamy stronę details.
+            return "student_details";
+        }
+
+        // w tym przypadku nie udało się odnaleźć studenta.
+        return "redirect:/student/list";
+    }
 }

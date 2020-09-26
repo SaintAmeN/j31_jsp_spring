@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 // DependencyInjection mechanism
 
@@ -25,5 +26,13 @@ public class StudentService {
 
     public List<Student> findAllStudents() {
         return studentRepository.findAll();
+    }
+
+    public void delete(Long studentId) {
+        studentRepository.deleteById(studentId);
+    }
+
+    public Optional<Student> findStudent(Long studentId) {
+        return studentRepository.findById(studentId);
     }
 }

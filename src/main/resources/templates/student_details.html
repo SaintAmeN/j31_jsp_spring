@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <div th:replace="pagefragments :: header_styles"/>
+</head>
+<body>
+<h1>Details of student with id: <span th:text="${student.id}"></span></h1>
+
+<div class="details-container">
+    <div class="details-section">
+        <h2>Dane studenta:</h2>
+        <div class="details-param">
+            <div class="details-label">Id:</div>
+            <div class="detail" th:text="${student.id}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label">Name:</div>
+            <div class="detail" th:text="${student.firstName}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label">Surname:</div>
+            <div class="detail" th:text="${student.lastName}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label">Birth date:</div>
+            <div class="detail" th:text="${student.birthDate}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label">Age:</div>
+            <div class="detail" th:text="${student.age}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label">Average:</div>
+            <div class="detail" th:text="${student.average}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label">ECTS:</div>
+            <div class="detail" th:text="${student.ects}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label">Is special:</div>
+            <div class="detail" th:text="${student.special}"></div>
+        </div>
+        <div class="details-param">
+            <div class="details-label"></div>
+            <div class="detail">
+                <a th:href="@{/grade/form(studentId=${student.id})}">Add grade...</a>
+            </div>
+        </div>
+    </div>
+    <div class="details-section">
+        <h2>Oceny studenta:</h2>
+        <div class="grade-container">
+            <div class="grade-table-header">
+                <div class="grade-table-header-cell">
+                    Id
+                </div>
+                <div class="grade-table-header-cell">
+                    Value
+                </div>
+                <div class="grade-table-header-cell">
+                    Subject
+                </div>
+                <div class="grade-table-header-cell">
+                    Datetime
+                </div>
+                <div class="grade-table-header-cell">
+                    Actions
+                </div>
+            </div>
+            <div class="grade-table-row" th:each="ocena: ${student.grades}">
+                <div class="grade-table-cell" th:text="${ocena.id}">
+
+                </div>
+                <div class="grade-table-cell" th:text="${ocena.value}">
+
+                </div>
+                <div class="grade-table-cell" th:text="${ocena.subject}">
+
+                </div>
+                <div class="grade-table-cell" th:text="${ocena.datetimeCreated}">
+                </div>
+                <div class="grade-table-cell">
+                    <a th:href="@{/grade/delete(id=${ocena.id})}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="pagefragments :: footer_scripts"/>
+</body>
+</html>
