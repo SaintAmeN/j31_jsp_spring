@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="pagefragments :: header_styles"/>
+</head>
+<body>
+
+<form th:action="@{/student/add}" method="post" th:object="${newStudent}">
+    <label for="inputName">First name:</label> <input id="inputName" type="text" th:field="*{firstName}"><br/>
+    <label for="inputLast">Last name:</label> <input id="inputLast" type="text" th:field="*{lastName}"><br/>
+    <label for="inputBirth">Birth date:</label> <input id="inputBirth" type="date" th:field="*{birthDate}"><br/>
+    <label for="inputSpecial">Special:</label> <input id="inputSpecial" type="checkbox" th:field="*{special}"><br/>
+    <label for="inputECTS">ECTS:</label> <input id="inputECTS" type="number" min="0" step="0.01" th:field="*{ects}"> <br/>
+
+    <input type="submit">
+</form>
+
+<div th:replace="pagefragments :: footer_scripts"/>
+</body>
+</html>

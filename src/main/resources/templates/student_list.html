@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+    <div th:replace="pagefragments :: header_styles"/>
+</head>
+<body>
+<h1>Student List:</h1>
+<div class="table">
+    <div class="header-row">
+        <div class="header-cell">
+            Id
+        </div>
+        <div class="header-cell">
+            First name
+        </div>
+        <div class="header-cell">
+            Last name
+        </div>
+        <div class="header-cell">
+            Birth date
+        </div>
+        <div class="header-cell">
+            Age
+        </div>
+        <div class="header-cell">
+            Is special
+        </div>
+        <div class="header-cell">
+            Average
+        </div>
+        <div class="header-cell">
+            ECTS
+        </div>
+        <div class="header-cell actions-cell">
+            Actions
+        </div>
+    </div>
+    <div class="student-row" th:each="studencik : ${students}">
+        <div class="student-cell" th:text="${studencik.id}">
+        </div>
+        <div class="student-cell" th:text="${studencik.firstName}">
+        </div>
+        <div class="student-cell" th:text="${studencik.lastName}">
+        </div>
+        <div class="student-cell" th:text="${studencik.birthDate}">
+        </div>
+        <div class="student-cell" th:text="${studencik.age}">
+        </div>
+        <div class="student-cell" th:text="${studencik.special}">
+        </div>
+        <div class="student-cell" th:text="${studencik.average}">
+        </div>
+        <div class="student-cell" th:text="${studencik.ects}">
+        </div>
+        <div class="student-cell actions-cell">
+            <a th:href="@{/student/details(studentId=studencik.id)}">Details</a>
+            <a th:href="@{/student/delete(studentId=studencik.id)}">Delete</a>
+        </div>
+    </div>
+</div>
+<div th:replace="pagefragments :: footer_scripts"/>
+</body>
+</html>
