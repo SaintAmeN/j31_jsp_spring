@@ -68,4 +68,5 @@ public class PathRestIndexController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(wartosc1/wartosc2);
     }
+
 }
